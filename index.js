@@ -6,7 +6,7 @@ const app = express();
 const jwt = require("jsonwebtoken");
 
 app.use(express.json());
-app.get("/get",  (req, resp) => {
+app.get("/get",  ensureToken, (req, resp) => {
     dbcon.query("SELECT * FROM login", (err, result) => {
         if (err) {
             resp.send("ERROR");
